@@ -1,0 +1,19 @@
+#!/bin/fish
+
+set xrandr_info (xrandr --query | grep " connected" | awk '{print $4}' | string split -r 'x' | string replace -r -a '\+[0-9]*' '')
+set screen_width (echo $xrandr_info | awk '{print $1}')
+set screen_height (echo $xrandr_info | awk '{print $2}')
+
+set middle_y (math $screen_height "/2")
+
+set info_window (berryc_info_window)
+set window_width (echo $info_window | jq '.geom.width')
+set window_height (echo $info_window | jq '.geom.height')
+
+if string match -q 'left' $argv[1]
+    set middle_left_x (math $screen_width "/4")
+    berryc window_move_absolute (math $middle_left_x '-' $window_width '/2') (math $middle_y '-' $window_height '/2')
+else if string match -q 'right' $argv[1]
+    set middle_right_x (math "3*" $screen_width "/4")
+    berryc window_move_absolute (math $middle_right_x '-' $window_width '/2') (math $middle_y '-' $window_height '/2')
+end

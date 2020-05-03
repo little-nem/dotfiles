@@ -1,0 +1,27 @@
+#!/bin/bash
+
+polybar example &
+picom --daemon --config /home/nemo/.config/berry/compton.conf &
+sxhkd -c /home/nemo/.config/berry/sxhkdrc &
+
+# Set decoration geometry
+berryc border_width       0
+berryc inner_border_width 1
+berryc title_height       25
+#berryc top_gap            60
+berryc edge_gap 60 10 15 15
+
+# Set decoration colors
+berryc text_focus_color    ffffff
+berryc text_unfocus_color  eeeeee
+berryc inner_focus_color "$(xrdb -query | grep '.color12'| awk '{print $NF}' | sed 's/#//' | head -n 1)"
+berryc inner_unfocus_color "$(xrdb -query | grep '.background'| awk '{print $NF}' | sed 's/#//' | head -n 1)"
+berryc unfocus_color "$(xrdb -query | grep '.color12'| awk '{print $NF}' | sed 's/#//' | head -n 1)"
+berryc focus_color "$(xrdb -query | grep '.background'| awk '{print $NF}' | sed 's/#//' | head -n 1)"
+
+# Other options
+berryc smart_place "true"
+berryc draw_text   "true"
+berryc edge_lock   "true"
+berryc set_font    "Fira Code-15"
+berryc decorate_new "true"
