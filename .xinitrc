@@ -1,6 +1,6 @@
 setxkbmap fr oss
 pulseaudio --start &
 nitrogen --restore &
-wal --theme dkeg-shade
+wal --theme base16-gruvbox-soft
 exec berry
 #exec openbox-session
