@@ -24,6 +24,12 @@ super + {h, j, k, l}
 super + shift +  {h, j, k, l}
     berryc window_resize {-50 0, 0 50, 0 -50, 50 0}
 
+super + r
+    berryc window_resize_absolute 1350 1750
+
+super + t
+    berryc window_resize_absolute 1350 875
+
 super + {1-9}
     berryc switch_workspace {0-9}
 
@@ -68,8 +74,14 @@ super + shift + Left
 super + a
     /home/nemo/opt/scripts/berryc_center_quadrant left
 
-super + z
+super + e
     /home/nemo/opt/scripts/berryc_center_quadrant right
+
+super + z
+    /home/nemo/opt/scripts/berryc_center_quadrant top
+
+super + s
+    /home/nemo/opt/scripts/berryc_center_quadrant bottom
 
 ~button1
     berryc pointer_focus
