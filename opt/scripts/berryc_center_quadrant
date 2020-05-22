@@ -13,7 +13,23 @@ set window_height (echo $info_window | jq '.geom.height')
 if string match -q 'left' $argv[1]
     set middle_left_x (math $screen_width "/4")
     berryc window_move_absolute (math $middle_left_x '-' $window_width '/2') (math $middle_y '-' $window_height '/2')
+
 else if string match -q 'right' $argv[1]
     set middle_right_x (math "3*" $screen_width "/4")
     berryc window_move_absolute (math $middle_right_x '-' $window_width '/2') (math $middle_y '-' $window_height '/2')
+
+else if string match -q 'top' $argv[1]
+    set top_y (math $screen_height "/4 + 60 ")
+
+    set y (echo $info_window | jq '.geom.y')
+    set x (echo $info_window | jq '.geom.x')
+    berryc window_move_absolute $x (math $top_y '-' $window_height '/2' )
+
+else if string match -q 'bottom' $argv[1]
+    set bottom_y (math $screen_height "*3/4")
+
+    set y (echo $info_window | jq '.geom.y')
+    set x (echo $info_window | jq '.geom.x')
+    berryc window_move_absolute $x (math $bottom_y '-' $window_height '/2' )
+
 end
